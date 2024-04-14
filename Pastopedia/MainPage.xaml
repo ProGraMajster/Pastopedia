@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+             x:Class="Pastopedia.MainPage"
+             Loaded="ContentPage_Loaded">
+
+    <ScrollView>
+        <StackLayout>
+            <ActivityIndicator x:Name="TheSpinner" IsVisible="True" IsRunning="True"/>
+
+            <mdc:Button Text="Test" Clicked="btnTestOpenPastaInfoPage_Clicked"/>
+            <StackLayout x:Name="slC" />
+            <Label x:Name="lblProgressInfo" Text="Ładowanie..." VerticalOptions="EndAndExpand"/>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

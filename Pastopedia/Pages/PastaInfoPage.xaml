@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
+             xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
+             x:Class="Pastopedia.Pages.PastaInfoPage"
+             Title="Pasta"
+             Loaded="ContentPage_Loaded">
+    <ScrollView
+        VerticalOptions="FillAndExpand"
+        VerticalScrollBarVisibility="Always">
+        <StackLayout>
+            <Frame Margin="15,5">
+                <StackLayout>
+                    <Label Text="Tytuł:" FontSize="Subtitle"/>
+                    <Label x:Name="lblTitle" FontSize="Title" />
+                    <Label x:Name="lblAuthor" IsVisible="False"/>
+                </StackLayout>
+            </Frame>
+            
+            
+            
+            <HorizontalStackLayout IsVisible="False" HorizontalOptions="Center" Margin="0,5" Spacing="10">
+                <mdc:FAB IconData="{Static icon:Material.HeartPlus}" Style="{DynamicResource SurfaceFABStyle}" />
+                <!--<mdc:FAB IconData="{Static icon:Material.HeartBroken}" Style="{DynamicResource SurfaceFABStyle}" />-->
+                <mdc:FAB IconData="{Static icon:Material.PlaylistAdd}" Style="{DynamicResource SurfaceFABStyle}" />
+            </HorizontalStackLayout>
+            <Frame Margin="15">
+                <StackLayout>
+                    <Label Text="Podgląd" FontSize="18"/>
+                    <Label x:Name="lblPreviewContent" Margin="0,5,0,0"/>
+                </StackLayout>
+            </Frame>
+            <mdc:Button x:Name="btnOpenReadPlayer" Text="Czytaj" IconData="{Static icon:Material.ReadMore}"  WidthRequest="120" Clicked="btnOpenReadPlayer_Clicked"/>
+            <Label x:Name="lblGuid" Text="GUID:" FontSize="10" VerticalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

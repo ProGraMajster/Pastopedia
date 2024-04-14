@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Pastopedia.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Pastopedia"
+    xmlns:pages="clr-namespace:Pastopedia.Pages"
+    xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Pastopedia">
+
+    <TabBar x:Name="tabbar">
+        <Tab
+            x:Name="tabMainPage"
+            Title="Strona główna"
+            Route="tabMainPage"
+            Icon="{Static icon:Material.Home}"
+            >
+            <ShellContent
+                Title="Strona główna"
+                ContentTemplate="{DataTemplate local:MainPage}"
+                Route="MainPage" 
+                Icon="{Static icon:Material.Home}"/>
+        </Tab>
+        <Tab
+            IsVisible="False"
+            x:Name="tabLibary"
+            Title="Biblioteka"
+            Route="tabLibary"
+            Icon="{Static icon:Material.LocalLibrary}"
+            >
+            <ShellContent
+                Title="Biblioteka"
+                ContentTemplate="{DataTemplate pages:LibraryPage}"
+                Route="Libary"
+                Icon="{Static icon:Material.LocalLibrary}"
+                />
+        </Tab>
+    </TabBar>
+
+</Shell>
