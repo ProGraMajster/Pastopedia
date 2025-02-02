@@ -1,4 +1,7 @@
-﻿using Pastopedia.Data;
+﻿using Android.Gms.Ads;
+using Pastopedia.Data;
+using Plugin.MauiMTAdmob.Extra;
+using Plugin.MauiMTAdmob;
 namespace Pastopedia
 {
     public partial class MainPage : ContentPage
@@ -10,6 +13,23 @@ namespace Pastopedia
             InitializeComponent();
             ContentManager.InitProgress += ContentManager_InitProgress;
             ContentManager.InitEnd += ContentManager_InitEnd;
+            try
+            {
+                CrossMauiMTAdmob.Current.TagForChildDirectedTreatment = MTTagForChildDirectedTreatment.TagForChildDirectedTreatmentUnspecified;
+                CrossMauiMTAdmob.Current.TagForUnderAgeOfConsent = MTTagForUnderAgeOfConsent.TagForUnderAgeOfConsentUnspecified;
+                CrossMauiMTAdmob.Current.MaxAdContentRating = MTMaxAdContentRating.MaxAdContentRatingG;
+                Plugin.MauiMTAdmob.Controls.MTAdView ad = new();
+                ad.AdsId = "ca-app-pub-3088807533847490/2341291875";
+                ad.AdSize = Plugin.MauiMTAdmob.Extra.BannerSize.Banner;
+                ad.HorizontalOptions = LayoutOptions.Center;
+                slAds.Children.Add(ad);
+            }
+            catch(Exception ex)
+            {
+                LogManager.Log(ex);
+                Console.WriteLine(ex.ToString());
+            }
+
         }
 
         private void ContentManager_InitProgress(object? sender, EventArgs e)
@@ -52,7 +72,7 @@ namespace Pastopedia
         {
             try
             {
-                Material.Components.Maui.Button button = (Material.Components.Maui.Button)sender;
+                Button button = (Button)sender;
                 if(button.CommandParameter == null)
                 {
                     return;
@@ -107,17 +127,41 @@ namespace Pastopedia
         {
             if(flc == false)
             {
+                
                 Thread th = new(() =>
                 {
                     try
                     {
-                        
+                        Thread.Sleep(1000);
                         ContentManager.Init();
                     }
                     catch(Exception ex)
                     {
                         LogManager.Log(ex);
                         Console.WriteLine(ex.ToString());
+                        try
+                        {
+                            Thread th2 = new(() =>
+                            {
+                                try
+                                {
+                                    Thread.Sleep(2500);
+                                    ContentManager.Init();
+                                }
+                                catch(Exception ex3)
+                                {
+                                    LogManager.Log(ex3);
+                                    Console.WriteLine(ex3.ToString());
+                                }
+                            });
+                            th2.Name = "R2_ContentManager.Init";
+                            th2.Start();
+                        }
+                        catch (Exception ex2)
+                        {
+                            LogManager.Log(ex2);
+                            Console.WriteLine(ex2.ToString());
+                        }
                     }
                 });
                 th.Name = "ContentManager.Init";
@@ -132,7 +176,7 @@ namespace Pastopedia
             {
                 foreach (var item in ContentManager.AllPast)
                 {
-                    Material.Components.Maui.Button button = new();
+                    Button button = new();
                     button.Text = item.Title;
                     button.CommandParameter = item;
                     button.Clicked += btnOpenPast;

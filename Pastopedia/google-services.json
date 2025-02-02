@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "351006620167",
+    "project_id": "pastopedia",
+    "storage_bucket": "pastopedia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351006620167:android:f8e909b4324ecdc7a148a2",
+        "android_client_info": {
+          "package_name": "com.programajster.pastopedia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5W3D81xWwRl1rRZAzvenRJsqBW32sVm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

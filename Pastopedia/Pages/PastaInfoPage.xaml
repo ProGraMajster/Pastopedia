@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mdc="clr-namespace:Material.Components.Maui;assembly=Material.Components.Maui"
              xmlns:icon="clr-namespace:IconPacks.IconKind;assembly=IconPacks.Material"
+             xmlns:ads="clr-namespace:Plugin.MauiMTAdmob.Controls;assembly=Plugin.MauiMTAdmob"
              x:Class="Pastopedia.Pages.PastaInfoPage"
              Title="Pasta"
              Loaded="ContentPage_Loaded">
@@ -19,11 +20,10 @@
             </Frame>
             
             
-            
             <HorizontalStackLayout IsVisible="False" HorizontalOptions="Center" Margin="0,5" Spacing="10">
-                <mdc:FAB IconData="{Static icon:Material.HeartPlus}" Style="{DynamicResource SurfaceFABStyle}" />
+                <mdc:FAB IconData="{Static icon:Material.HeartPlus}" BackgroundColor="{DynamicResource Primary}" IconColor="{DynamicResource OnPrimary}"  Style="{DynamicResource SurfaceFABStyle}" />
                 <!--<mdc:FAB IconData="{Static icon:Material.HeartBroken}" Style="{DynamicResource SurfaceFABStyle}" />-->
-                <mdc:FAB IconData="{Static icon:Material.PlaylistAdd}" Style="{DynamicResource SurfaceFABStyle}" />
+                <mdc:FAB IconData="{Static icon:Material.PlaylistAdd}" BackgroundColor="{DynamicResource Primary}" IconColor="{DynamicResource OnPrimary}" Style="{DynamicResource SurfaceFABStyle}" />
             </HorizontalStackLayout>
             <Frame Margin="15">
                 <StackLayout>
@@ -31,8 +31,15 @@
                     <Label x:Name="lblPreviewContent" Margin="0,5,0,0"/>
                 </StackLayout>
             </Frame>
-            <mdc:Button x:Name="btnOpenReadPlayer" Text="Czytaj" IconData="{Static icon:Material.ReadMore}"  WidthRequest="120" Clicked="btnOpenReadPlayer_Clicked"/>
+            <mdc:Button x:Name="btnOpenReadPlayer"
+                        BackgroundColor="{DynamicResource Primary}"
+                        FontColor="{DynamicResource OnPrimary}"
+                        IconColor="{DynamicResource OnPrimary}"
+                        Text="Czytaj" IconData="{Static icon:Material.ReadMore}" 
+                        WidthRequest="120" 
+                        Clicked="btnOpenReadPlayer_Clicked"/>
             <Label x:Name="lblGuid" Text="GUID:" FontSize="10" VerticalOptions="EndAndExpand" HorizontalTextAlignment="Center"/>
+            <StackLayout x:Name="slAds" MaximumHeightRequest="50" VerticalOptions="EndAndExpand"/>
         </StackLayout>
     </ScrollView>
     

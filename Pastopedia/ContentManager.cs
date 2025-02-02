@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Pastopedia
@@ -65,7 +66,10 @@ namespace Pastopedia
                 {
                     if(InitEnd.Target != null)
                     {
-                        InitEnd.Invoke(AllPast, EventArgs.Empty);
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            InitEnd.Invoke(AllPast, EventArgs.Empty);
+                        });
                     }
                 }
             }
@@ -261,8 +265,7 @@ namespace Pastopedia
                 {
                     if (item.FullName.EndsWith(".json"))
                     {
-                        Pasta p = (Pasta)AnimePlayer.Core.
-                            SerializationAndDeserialization.DeserializationJsonEx(item.FullName, typeof(Pasta));
+                        Pasta p = (Pasta)DeserializationJsonEx(item.FullName, typeof(Pasta));
                         list.Add(p);
                     }
                 }
@@ -279,8 +282,7 @@ namespace Pastopedia
         {
             try
             {
-                Pasta p = (Pasta)AnimePlayer.Core.
-                            SerializationAndDeserialization.DeserializationJsonEx(path, typeof(Pasta));
+                Pasta p = (Pasta)DeserializationJsonEx(path, typeof(Pasta));
                 return p;
             }
             catch(Exception ex)
@@ -288,6 +290,33 @@ namespace Pastopedia
                 LogManager.Log(ex);
                 Console.WriteLine(ex.ToString());
             }
+            return null;
+        }
+
+        public static string SerializationJsonGetString(object obj, Type type)
+        {
+            return JsonSerializer.Serialize(obj, type);
+        }
+
+        public static string SerializationJsonEx(object obj, Type type)
+        {
+            JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
+            jsonSerializerOptions.WriteIndented = true;
+            return JsonSerializer.Serialize(obj, type, jsonSerializerOptions);
+        }
+
+        public static object DeserializationJsonEx(string path, Type type)
+        {
+            try
+            {
+                JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions();
+                jsonSerializerOptions.WriteIndented = true;
+                return JsonSerializer.Deserialize(File.ReadAllText(path), type, jsonSerializerOptions);
+            }
+            catch (Exception)
+            {
+            }
+
             return null;
         }
 

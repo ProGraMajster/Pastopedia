@@ -1,4 +1,6 @@
+using Android.Graphics;
 using Pastopedia.Data;
+using System.Diagnostics;
 
 namespace Pastopedia.Pages
 {
@@ -9,6 +11,20 @@ namespace Pastopedia.Pages
         {
             InitializeComponent();
             pasta = pastaa;
+            try
+            {
+                Plugin.MauiMTAdmob.Controls.MTAdView ad = new();
+                ad.AdsId = "ca-app-pub-3088807533847490/9156862104";
+                ad.AdSize = Plugin.MauiMTAdmob.Extra.BannerSize.Banner;
+                ad.HorizontalOptions = LayoutOptions.Center;
+                slAds.Children.Add(ad);
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+                Console.WriteLine(ex.ToString());
+            }
+
         }
 
         bool flc = false;
@@ -41,7 +57,7 @@ namespace Pastopedia.Pages
             }
         }
 
-        private async void btnOpenReadPlayer_Clicked(object sender, TouchEventArgs e)
+        private async void btnOpenReadPlayer_Clicked(object sender, EventArgs e)
         {
             try
             {

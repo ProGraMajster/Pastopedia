@@ -5,6 +5,13 @@
              >
     <ScrollView VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Always">
         <StackLayout>
+            <Frame Margin="5" Padding="5">
+                <HorizontalStackLayout>
+                    <Label x:Name="lblFS" Text="Wielkość tekstu" Margin="10,0" VerticalOptions="Center" />
+                    <Stepper x:Name="stepper" Minimum="5" Maximum="100" ValueChanged="stepper_ValueChanged"/>
+                </HorizontalStackLayout>
+            </Frame>
+            
             <Label x:Name="lblContent" Margin="15" FontSize="Body"/>
         </StackLayout>
     </ScrollView>
